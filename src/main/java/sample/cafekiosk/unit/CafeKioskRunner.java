@@ -16,7 +16,7 @@ public class CafeKioskRunner {
         kiosk.add(new Latte());
         System.out.println(">>> 라떼 추가");
 
-        int totalPrice = kiosk.caculateTotalPrice();
+        int totalPrice = kiosk.calculateTotalPrice();
         System.out.println(">>> 총 주문 가격: " + totalPrice);
 
         Order order = kiosk.createOrder(LocalDateTime.now());

@@ -62,11 +62,7 @@ public class CafeKiosk {
         return new Order(currentDateTime, berverages);
     }
 
-    public int caculateTotalPrice() {
-        int totalPrice = 0;
-        for (Beverage berverage : berverages) {
-            totalPrice += berverage.getPrice();
-        }
-        return totalPrice;
+    public int calculateTotalPrice() {
+        return berverages.stream().mapToInt(Beverage::getPrice).sum();
     }
 }

@@ -90,8 +90,20 @@ class CafeKioskTest {
         assertThat(kiosk.getBerverages()).hasSize(0);
     }
 
+    @Test
+    void calculateTotalPrice() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+        Latte latte = new Latte();
 
-    // 이 테스트는 현재 시간에 따라 결과가 바뀐다.
+        cafeKiosk.add(americano);
+        cafeKiosk.add(latte);
+
+        int total = cafeKiosk.calculateTotalPrice();
+        assertThat(total).isEqualTo(8500);
+    }
+
+
     @DisplayName("주문하기 [테스트에 따라 결과가 바뀜.]")
     @Disabled
     @Test
@@ -106,7 +118,7 @@ class CafeKioskTest {
         assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
     }
 
-    @DisplayName("현재 시간을 받아서 주문한다. [성공]")
+    @DisplayName("현재 시간을 파라미터로 받아서 주문한다. [성공]")
     @Test
     void create_order_with_current_time() {
         CafeKiosk kiosk = new CafeKiosk();
@@ -119,7 +131,7 @@ class CafeKioskTest {
         assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
     }
 
-    @DisplayName("현재 시간을 받아서 주문한다. [예외]")
+    @DisplayName("현재 시간을 파라미터로 받아서 주문한다. [예외]")
     @Test
     void create_order_with_not_open() {
         CafeKiosk kiosk = new CafeKiosk();
