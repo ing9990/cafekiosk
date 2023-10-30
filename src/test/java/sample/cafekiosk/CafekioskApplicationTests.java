@@ -8,6 +8,7 @@ class CafekioskApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
