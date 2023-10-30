@@ -15,16 +15,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class CafeKioskTest {
 
-    @Test
-    void add_manual_test() {
-        CafeKiosk cafeKiosk = new CafeKiosk();
-        cafeKiosk.add(new Americano());
-
-        System.out.println(">>> 담긴 음료 수: " + cafeKiosk.getBerverages().size());
-        System.out.println(">>> 담긴 음료: " + cafeKiosk.getBerverages().get(0).getName());
-    }
-
-
     @DisplayName("키오스크에 음료를 추가할 수 있다.")
     @Test
     void add() {
@@ -87,7 +77,7 @@ class CafeKioskTest {
         assertThat(kiosk.getBerverages()).hasSize(2);
 
         kiosk.clear();
-        assertThat(kiosk.getBerverages()).hasSize(0);
+        assertThat(kiosk.getBerverages()).isEmpty();
     }
 
     @Test
@@ -105,7 +95,7 @@ class CafeKioskTest {
 
 
     @DisplayName("주문하기 [테스트에 따라 결과가 바뀜.]")
-    @Disabled
+    @Disabled(value = "worse case")
     @Test
     void create_order() {
         CafeKiosk kiosk = new CafeKiosk();
@@ -139,7 +129,7 @@ class CafeKioskTest {
 
         kiosk.add(americano);
 
-        assertThatThrownBy(() -> kiosk.createOrder(LocalDateTime.of(2023, 10, 30, 07, 0)))
+        assertThatThrownBy(() -> kiosk.createOrder(LocalDateTime.of(2023, 10, 30, 7, 0)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("주문시간이 아닙니다. 관리자에게 문의하세요.");
     }
