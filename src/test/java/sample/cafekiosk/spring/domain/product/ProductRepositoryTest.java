@@ -65,7 +65,6 @@ class ProductRepositoryTest {
     @Test
     void findAllByProductNumberIn() {
         // given
-        // given
         Product product1 = Product.builder()
                 .productNumber("001")
                 .type(HANDMADE)
