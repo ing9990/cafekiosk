@@ -15,9 +15,10 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class CafeKioskTest {
 
-    @DisplayName("키오스크에 음료를 추가할 수 있다.")
+    //@DisplayName("1. 음료 1개 추가 테스트")
+    @DisplayName("1. 음료 1개를 추가하면 주문 목록에 담긴다.")
     @Test
-    void add() {
+    void add01() {
         CafeKiosk cafeKiosk = new CafeKiosk();
 
         cafeKiosk.add(new Americano());
@@ -80,21 +81,24 @@ class CafeKioskTest {
         assertThat(kiosk.getBerverages()).isEmpty();
     }
 
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
     @Test
     void calculateTotalPrice() {
+        // given
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
         Latte latte = new Latte();
 
+        // when
         cafeKiosk.add(americano);
         cafeKiosk.add(latte);
 
+        // then
         int total = cafeKiosk.calculateTotalPrice();
         assertThat(total).isEqualTo(8500);
     }
 
 
-    @DisplayName("주문하기 [테스트에 따라 결과가 바뀜.]")
     @Disabled(value = "worse case")
     @Test
     void create_order() {
@@ -108,7 +112,8 @@ class CafeKioskTest {
         assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
     }
 
-    @DisplayName("현재 시간을 파라미터로 받아서 주문한다. [성공]")
+    //@DisplayName("특정 시간 이전에 주문을 생성하면 실패한다.")
+    @DisplayName("영업 시작 시간 이전에는 주문을 생성할 수 없다..")
     @Test
     void create_order_with_current_time() {
         CafeKiosk kiosk = new CafeKiosk();
