@@ -19,12 +19,11 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/new")
-    OrderResponse createOrder(
-            @RequestBody OrderCreateRequest request
-    ) {
+    OrderResponse createOrder(@RequestBody OrderCreateRequest request) {
         LocalDateTime registeredDateTime = LocalDateTime.now();
         return orderService.createOrder(request, registeredDateTime);
     }
 
 
 }
+
