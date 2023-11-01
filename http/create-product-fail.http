@@ -1,0 +1,8 @@
+POST localhost:8080/api/v1/products/new
+Content-Type: application/json
+
+{
+  "sellingStatus": "SELLING",
+  "price": 4000,
+  "name": "아메리카노",
+}
