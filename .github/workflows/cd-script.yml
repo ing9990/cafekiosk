@@ -28,16 +28,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew bootJar
 
-      - name: Deploy use SCP
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USERNAME}}
-          password: ${{secrets.PASSWORD}}
-          source: "./build/libs/*.jar"
-          target: "/root/gigacoffee/deploy.sh"
-          strip_components: 3
-
       - name: Run Application use SSH
         uses: appleboy/ssh-action@master
         with:
