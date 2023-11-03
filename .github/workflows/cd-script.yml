@@ -8,10 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ../
-
     steps:
       #      - uses: actions/checkout@v2
       #        with:
@@ -24,7 +20,7 @@ jobs:
           distribution: "adopt"
 
       - name: Build with Gradle
-        run: ./gradlew bootJar
+        run: chmod +x ./gradlew | ./gradlew bootJar
 
       - name: Deploy use SCP
         uses: appleboy/scp-action@master
