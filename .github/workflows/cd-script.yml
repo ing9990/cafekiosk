@@ -23,10 +23,10 @@ jobs:
           distribution: "adopt"
 
       - name: Check directories
-        run: ls -l ../
+        run: ls -l ../cafekiosk/
 
       - name: Build with Gradle
-        run: ./gradlew bootJar
+        run: ../cafekiosk/gradlew bootJar
 
       - name: Deploy use SCP
         uses: appleboy/scp-action@master
