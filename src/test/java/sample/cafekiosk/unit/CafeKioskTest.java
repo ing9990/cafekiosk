@@ -139,14 +139,3 @@ class CafeKioskTest {
                 .hasMessage("주문시간이 아닙니다. 관리자에게 문의하세요.");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
