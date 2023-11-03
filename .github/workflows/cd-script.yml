@@ -26,6 +26,8 @@ jobs:
         with:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
-          passphrase: ${{secrets.KEY}}
-          port: ${{secrets.PORT}}
-          script: sh /root/gigacoffee/deploy.sh
+          key: ${{secrets.KEY}}
+          port: 22
+          script: |
+            whoami |
+            ls -l
