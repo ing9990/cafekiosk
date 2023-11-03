@@ -42,8 +42,8 @@ jobs:
       - name: Run Application use SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.LINODE_HOST}}
-          username: ${{secrets.LINODE_USERNAME}}
-          password: ${{secrets.LINODE_PASSWORD}}
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
           script_stop: true
           script: sh /root/gigacoffee/deploy.sh
