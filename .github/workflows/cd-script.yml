@@ -22,10 +22,4 @@ jobs:
       #          tags: gr4nd/test:latest
 
       - name: Execute remote ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USERNAME}}
-          password: ${{secrets.PASSWORD}}
-          port: 22
-          script: whoami
+        run: ssh ${{secrets.USERNAME}}@${{secrets.HOST}} -p 22 | ${{secrets.PASSWORD}}
