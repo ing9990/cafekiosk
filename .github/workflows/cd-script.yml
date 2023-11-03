@@ -21,18 +21,18 @@ jobs:
       - name: Set execute permissions for Gradle Wrapper
         run: chmod +x ./gradlew
 
-      - name: Build with Gradle For RestDocs
-        run: ./gradlew bootJar
-
       - name: Build with Gradle
         run: ./gradlew bootJar
 
-      - name: Run Application use SSH
-        uses: appleboy/ssh-action@master
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
-          key: ${{ secrets.KEY }}
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER_NAME }}
-          port: ${{ secrets.PORT }}
-          script_stop: true
-          script: sh /root/gigacoffee/deploy.sh
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: gr4nd/test:latest
