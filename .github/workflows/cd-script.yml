@@ -21,5 +21,9 @@ jobs:
       #          push: true
       #          tags: gr4nd/test:latest
 
-      - name: Execute remote ssh
-        run: ssh ${{secrets.USERNAME}}@${{secrets.HOST}} -p 22 | ${{secrets.PASSWORD}}
+      - name: SSH into Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
