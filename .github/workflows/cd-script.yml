@@ -23,7 +23,7 @@ jobs:
           distribution: "adopt"
 
       - name: Check directories
-        run: ls -l
+        run: ls -l ../
 
       - name: Build with Gradle
         run: ./gradlew bootJar
