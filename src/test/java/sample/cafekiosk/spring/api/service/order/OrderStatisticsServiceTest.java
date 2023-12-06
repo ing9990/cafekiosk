@@ -67,43 +67,47 @@ class OrderStatisticsServiceTest {
         List<Product> products = List.of(product1, product2, product3);
         productRepository.saveAll(products);
 
-        Order order1 = createPaymentCompletedOrder(LocalDateTime.of(2023, 3, 4, 23, 59, 59), products);
+        Order order1 = createPaymentCompletedOrder(LocalDateTime.of(2023, 3, 4, 23, 59, 59),
+            products);
         Order order2 = createPaymentCompletedOrder(now, products);
-        Order order3 = createPaymentCompletedOrder(LocalDateTime.of(2023, 3, 6, 23, 59, 59), products);
+        Order order3 = createPaymentCompletedOrder(LocalDateTime.of(2023, 3, 6, 23, 59, 59),
+            products);
         Order order4 = createPaymentCompletedOrder(LocalDateTime.of(2023, 3, 6, 0, 0), products);
 
         // stubbing
-        when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
-                .thenReturn(true);
+        when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class),
+            any(String.class)))
+            .thenReturn(true);
 
         // when
-        boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2023, 3, 5), "test@test.com");
+        boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2023, 3, 5),
+            "test@test.com");
 
         // then
         assertThat(result).isTrue();
 
         List<MailSendHistory> histories = mailSendHistoryRepository.findAll();
         assertThat(histories).hasSize(1)
-                .extracting("content")
-                .contains("총 매출 합계는 6000원입니다.");
+            .extracting("content")
+            .contains("총 매출 합계는 6000원입니다.");
 
     }
 
     private Order createPaymentCompletedOrder(LocalDateTime now, List<Product> products) {
         return orderRepository.save(Order.builder()
-                .registeredDateTime(now)
-                .orderStatus(OrderStatus.PAYMENT_COMPLETED)
-                .products(products)
-                .build());
+            .registeredDateTime(now)
+            .orderStatus(OrderStatus.PAYMENT_COMPLETED)
+            .products(products)
+            .build());
     }
 
     private Product createProduct(ProductType type, String productNumber, int price) {
         return Product.builder()
-                .productNumber(productNumber)
-                .type(type)
-                .sellingStatus(SELLING)
-                .name("메뉴 이름")
-                .price(price)
-                .build();
+            .productNumber(productNumber)
+            .type(type)
+            .sellingStatus(SELLING)
+            .name("메뉴 이름")
+            .price(price)
+            .build();
     }
 }

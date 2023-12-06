@@ -48,8 +48,8 @@ class CafeKioskTest {
         Americano americano = new Americano();
 
         assertThatThrownBy(() -> cafeKiosk.add(americano, -3))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("음료는 1잔 이상 주문하실 수 있습니다.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("음료는 1잔 이상 주문하실 수 있습니다.");
     }
 
     @DisplayName("키오스크에 추가된 음료를 지울 수 있다.")
@@ -113,7 +113,7 @@ class CafeKioskTest {
     }
 
     //@DisplayName("특정 시간 이전에 주문을 생성하면 실패한다.")
-    @DisplayName("영업 시작 시간 이전에는 주문을 생성할 수 없다..")
+    @DisplayName("영업 시작 시간 이전에는 주문을 생성할 수 없다.")
     @Test
     void create_order_with_current_time() {
         CafeKiosk kiosk = new CafeKiosk();
@@ -135,7 +135,7 @@ class CafeKioskTest {
         kiosk.add(americano);
 
         assertThatThrownBy(() -> kiosk.createOrder(LocalDateTime.of(2023, 10, 30, 7, 0)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("주문시간이 아닙니다. 관리자에게 문의하세요.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("주문시간이 아닙니다. 관리자에게 문의하세요.");
     }
 }

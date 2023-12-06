@@ -22,8 +22,6 @@ public class OrderCreateRequest {
     }
 
     public OrderCreateServiceRequest toServiceRequest() {
-        return OrderCreateServiceRequest.builder()
-                .productNumbers(productNumbers)
-                .build();
+        return OrderCreateServiceRequest.builder().productNumbers(productNumbers).build();
     }
 }
